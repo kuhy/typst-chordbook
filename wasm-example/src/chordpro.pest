@@ -1,0 +1,17 @@
+WHITESPACE = _{ " " | "\t" }
+NEWLINE    = _{ "\n" | "\r\n" }
+
+line       =  { chord_line ~ NEWLINE? }
+
+chord_line =  { (chorded_text | plain_text)+ }
+
+chorded_text = { chord ~ text? }
+plain_text   = { (!chord_start ~ ANY)+ }
+
+chord       =  { chord_start ~ chord_name ~ "]" }
+chord_start =  { "[" }
+chord_name  =  @{ ASCII_ALPHANUMERIC+ }
+
+text        =  @{ (!chord_start ~ ANY)+ }
+
+file       =  { line }

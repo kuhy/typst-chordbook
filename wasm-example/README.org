@@ -1,0 +1,83 @@
+#+TITLE: TODO REWRITE IT USING CHATGPT
+- https://chatgpt.com/c/686bb4fc-3348-8007-aa8a-f52bf2f01b65
+- https://github.com/SillyFreak/typst-parsing-plugin/tree/main
+- https://docs.rs/logos/0.12.0/logos/
+- https://docs.rs/lalrpop/latest/lalrpop/
+- https://www.chordpro.org/chordpro/chordpro-directives/
+- https://github.com/martijnversluis/ChordSheetJS/blob/master/src/parser/chords_over_words/grammar.pegjs
+- https://github.com/menees/Chords/blob/master/src/Menees.Chords/ChordProLyricLine.cs
+- https://onsongapp.com/docs/features/formats/onsong/
+- https://github.com/patacrep/patacrep
+Typst package for parsing and displaying songs written in chord over
+text format (think Ultimate Guitar).
+
+For instance, following input:
+#+BEGIN_SRC
+  title: Song title
+  artist: firstname lastname
+  artist: band\ name
+  artist: another artist
+  capo: 3
+
+  // This is a comment.
+  [Intro]
+  G D A
+
+  [Verse 1]
+  G A
+  TODO
+  D F#m Hm
+  TODO
+
+  This is another block of verse 1.
+
+  [Bridge]
+  D A D
+
+  [Chorus]
+  TODO
+
+  [Verse 2]
+  G A (this is an annotation)
+  You can write annotations in brackets
+  D F#m Hm
+  and place them over or beside a text (this is another one)
+
+  [Chorus] // This will repeat chorus.
+
+  [Verse 3] x3
+  [: This paragraph should be played twice
+  and whole section 3 times. :]
+  [: Chord lines can be also repeated. :] x3
+  G D A x4
+
+  [Outro]
+  TODO
+#+END_SRC
+
+Will produce following output:
+[image]
+** TODO Input format
+*** Metadata
+    TODO title
+    TODO artist
+    TODO second artist.
+    TODO capo
+    TODO another metadata (name should be case insensitive)
+         key, time, album, year, tempo
+*** Sections
+    Sections can be named arbitrarily.
+    TODO Package settings will enable to diaplay sections differently
+    based on section name.
+*** TODO Chords
+*** TODO Lyrics
+*** TODO Repetition (line, whole section, how many times)
+*** TODO Annotations (above text and in text)
+*** TODO Comments
+** TODO Output customization
+   How to display parsed song is highly customizable.
+** TODO How it works
+   It is calling external Rust WASM code in order to parse files and
+   create an AST from them. This AST is then transform using Typst in
+   order to produce beatiful PDF/HTML output.
+
