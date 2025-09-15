@@ -1,0 +1,1 @@
+/home/tomas/Documents/projects/typst-chordbook/wasm-example/target/release/libchordpro_parser.rlib: /home/tomas/Documents/projects/typst-chordbook/wasm-example/src/chordpro.pest /home/tomas/Documents/projects/typst-chordbook/wasm-example/src/lib.rs
