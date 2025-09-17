@@ -3,7 +3,7 @@
     author: "Jaromír Nohavica",
     sections: (
         (name: "Bridge 1", lines: (
-            ((chord: "C"), (chord: "F2"), (chord: "G"))
+            ((chord: "C"), (chord: "F2"), (chord: "G")),
         )),
         (name: "Verse 1", lines: (
             (
@@ -41,25 +41,25 @@
             )
         )),
         (name: "Verse 2", lines: (
-            ((text: "Ahoj, ahoj, slunko, jsem rád, že jsi ještě,")),
-            ((text: "osuš mi moje vlasy, jsou promáčené předvčerejším deštěm,")),
-            ((text: "no, prostě jsem zmok', naštěstí voda teče vždycky shora dolů,")),
-            ((text: "třicátý druhý rok to takhle přes překážky táhnem spolu.")),
-            ((text: "Ahoj!"))
+            ((text: "Ahoj, ahoj, slunko, jsem rád, že jsi ještě,"),),
+            ((text: "osuš mi moje vlasy, jsou promáčené předvčerejším deštěm,"),),
+            ((text: "no, prostě jsem zmok', naštěstí voda teče vždycky shora dolů,"),),
+            ((text: "třicátý druhý rok to takhle přes překážky táhnem spolu."),),
+            ((text: "Ahoj!"),)
         )),
         (name: "Verse 3", lines: (
-            ((text: "Ahoj, ahoj, slunko, jsem rád, že tě vidím,")),
-            ((text: "doma mi bylo smutno, a tak jsem vyšel zase mezi lidi,")),
-            ((text: "srdce potřebuje svý, a kdo bere, měl by taky něco dát,")),
-            ((text: "člověk, ten není zlý, jen prostě některé lidi nemám rád.")),
-            ((text: "Ahoj!"))
+            ((text: "Ahoj, ahoj, slunko, jsem rád, že tě vidím,"),),
+            ((text: "doma mi bylo smutno, a tak jsem vyšel zase mezi lidi,"),),
+            ((text: "srdce potřebuje svý, a kdo bere, měl by taky něco dát,"),),
+            ((text: "člověk, ten není zlý, jen prostě některé lidi nemám rád."),),
+            ((text: "Ahoj!"),)
         )),
         (name: "Verse 4", lines: (
-            ((text: "Ahoj, ahoj, slunko, ty máš dneska hezké tváře")),
-            ((text: "a kdyby mělo snad být smutno, tak na to já mám svoje opraváře,")),
-            ((text: "a tak dál mi sviť, a až zalezeš za mraky jako tečka,")),
-            ((text: "vylezeš zase, viď, a tu chvilku, než to bude, tu já přečkám.")),
-            ((text: "Ahoj!"))
+            ((text: "Ahoj, ahoj, slunko, ty máš dneska hezké tváře"),),
+            ((text: "a kdyby mělo snad být smutno, tak na to já mám svoje opraváře,"),),
+            ((text: "a tak dál mi sviť, a až zalezeš za mraky jako tečka,"),),
+            ((text: "vylezeš zase, viď, a tu chvilku, než to bude, tu já přečkám."),),
+            ((text: "Ahoj!"),)
         )),
         (name: "Bridge 2", lines: (
             (

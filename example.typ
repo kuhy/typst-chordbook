@@ -1,5 +1,18 @@
 #import "@preview/conchord:0.4.0": *
 
+#let ahoj = (
+    title: "fsdfdsaf",
+    author: "Samson",
+    sections: ((name: "Verse 1", lines: (
+            ((text: "Ah", chord: "C"), ("oj Slunko", "D") ("Jak se máš", "G")),
+            (("fsfs", "D")),
+            ((text: "fdsafdsafdsafdsf")),
+            ((chord: "C D E"))
+    ), (name: "Verse 2", lines: (
+        (("Jak pak fs", "D"), "aff", "A"))
+    )))
+)
+
 #box(smart-chord("Am"))
 // at what fret to play the chord
 #box(smart-chord("Am", at: 5)) // chord at fifth fret

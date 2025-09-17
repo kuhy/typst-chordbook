@@ -2,6 +2,8 @@
 
 #let result_bytes = _p.parse(bytes("[C]Hello [G]world\nthis is [F]another [C]line"))
 
-#let result_string = str(result_bytes)
+#let result_string = cbor(result_bytes).title
 
 #result_string
+
+
