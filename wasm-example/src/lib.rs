@@ -105,11 +105,11 @@ fn is_chord(s: &str) -> bool {
 }
 
 fn align_chords_with_lyrics(chord_line: &str, lyric_line: &str) -> Vec<ChordLyric> {
-    let mut result = Vec::new();
     let chord_chars: Vec<char> = chord_line.chars().collect();
     let lyric_chars: Vec<char> = lyric_line.chars().collect();
 
-    let mut chord_positions = Vec::new();
+    // collect (position, chord_name)
+    let mut chords: Vec<(usize, String)> = Vec::new();
     let mut idx = 0;
     while idx < chord_chars.len() {
         while idx < chord_chars.len() && chord_chars[idx].is_whitespace() {
@@ -119,46 +119,60 @@ fn align_chords_with_lyrics(chord_line: &str, lyric_line: &str) -> Vec<ChordLyri
             break;
         }
         let start = idx;
-        let mut chord = String::new();
+        let mut name = String::new();
         while idx < chord_chars.len() && !chord_chars[idx].is_whitespace() {
-            chord.push(chord_chars[idx]);
+            name.push(chord_chars[idx]);
             idx += 1;
         }
-        chord_positions.push((start, chord));
+        chords.push((start, name));
     }
 
-    let mut prev_pos = 0;
-    for (i, &(chord_pos, ref chord)) in chord_positions.iter().enumerate() {
-        let end_pos = if i + 1 < chord_positions.len() {
-            chord_positions[i + 1].0
+    // if no chords, return whole lyric as a single (empty-chord) segment
+    if chords.is_empty() {
+        return vec![ChordLyric {
+            text: lyric_line.to_string(),
+            chord: String::new(),
+        }];
+    }
+
+    let mut out = Vec::new();
+    let lyric_len = lyric_chars.len();
+
+    // initial text before the first chord -> empty chord
+    let first_pos = chords[0].0.min(lyric_len);
+    if first_pos > 0 {
+        let initial_text = lyric_chars[0..first_pos].iter().collect::<String>();
+        out.push(ChordLyric {
+            text: initial_text,
+            chord: String::new(),
+        });
+    }
+
+    // for each chord, take lyric from its pos to next chord pos (or to end)
+    for i in 0..chords.len() {
+        let (pos, ref chord) = &chords[i];
+        let start = (*pos).min(lyric_len);
+        let end = if i + 1 < chords.len() {
+            chords[i + 1].0.min(lyric_len)
         } else {
-            lyric_chars.len()
+            lyric_len
         };
-        let end_pos = end_pos.min(lyric_chars.len());
-        if prev_pos <= chord_pos && chord_pos < end_pos {
-            let text = lyric_chars[chord_pos..end_pos].iter().collect::<String>();
-            result.push(ChordLyric { text, chord: chord.clone() });
+        if start < end {
+            let text = lyric_chars[start..end].iter().collect::<String>();
+            out.push(ChordLyric {
+                text,
+                chord: chord.clone(),
+            });
+        } else {
+            // no lyric under this chord (still keep the chord)
+            out.push(ChordLyric {
+                text: String::new(),
+                chord: chord.clone(),
+            });
         }
-        prev_pos = chord_pos;
     }
 
-    if !chord_positions.is_empty() {
-        let first_chord_pos = chord_positions[0].0;
-        if first_chord_pos > 0 {
-            let first_text = lyric_chars[0..first_chord_pos.min(lyric_chars.len())]
-                .iter()
-                .collect::<String>();
-            result.insert(
-                0,
-                ChordLyric { text: first_text, chord: chord_positions[0].1.clone() },
-            );
-        }
-    } else {
-        result.push(ChordLyric { text: lyric_line.to_string(), chord: String::new() });
-    }
-
-    result
-        .into_iter()
+    out.into_iter()
         .filter(|cl| !cl.text.is_empty() || !cl.chord.is_empty())
         .collect()
 }
